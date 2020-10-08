@@ -1,13 +1,7 @@
 <template>
   <div>
     <b-modal id="mapmodal" title="MAP" hide-footer>
-      <google-maps class="map"
-      :center="{
-        lat: -6.893690,
-        lng: 107.561057
-      }"
-      :zoom="12"
-      ></google-maps>
+      <google-maps class="map" :center="{lat: -6.923477, lng: 107.606335}" :zoom="12"></google-maps>
     </b-modal>
   </div>
 </template>
@@ -17,7 +11,7 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 
 export default {
   components: {
-    'google-maps': VueGoogleMaps
+    'google-maps': VueGoogleMaps.Map
   }
 }
 </script>
@@ -25,6 +19,6 @@ export default {
 <style scoped>
   .map {
     width: 100%;
-    height: 100px;
+    height: 500px;
   }
 </style>

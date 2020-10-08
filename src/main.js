@@ -15,7 +15,7 @@ Vue.use(IconsPlugin)
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyCJyGDdEAbPNepktnd_F7jBlnL_feJEqOs'
+    key: 'AIzaSyBSraH5JA-j6lLMGSKkYtpBx0OwU9HoI2s'
   }
 })
 
