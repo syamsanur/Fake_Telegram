@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-3 border">
+      <div class="col-lg-3 border vh-100">
 
         <div class="row mt-3 p-3">
           <div class="col-lg-8 col-6">
@@ -172,7 +172,7 @@
       </div>
 
       <div class="col-lg-9 p-3 chatContent" v-if="selectOn === false">
-        <p>Chat woy</p>
+        <p class="text-center">Silahkan Pilih User</p>
       </div>
 
       <div class="col-lg-9 p-3 chatContent" v-else>
@@ -194,7 +194,8 @@
         </div>
 
         <div class="col" v-if="userRecName !== null">
-          <div class="col p-3" v-for="(item, index) in historyMessages" :key="index">
+          <div class="col p-3" v-for="(item, index) in privateMessages" :key="index">
+            <!-- {{item.message}} -->
             <div class="row p-3" v-if="item.sender === username">
               <div class="col-lg-2 align-self-end">
                 <img class="photoHeader" :src="`${url}/${dataUser.image}`">
@@ -215,7 +216,8 @@
         </div>
 
         <div class="col" v-else >
-          <div class="col p-3" v-for="(item, index) in privateMessages" :key="index">
+          <div class="col p-3" v-for="(item, index) in listMessages" :key="index">
+              <!-- {{item.message}} -->
             <div class="row p-3" v-if="item.sender === username">
               <div class="col-lg-2 align-self-end">
                 <img class="photoHeader" :src="`${url}/${dataUser.image}`">
@@ -433,6 +435,8 @@ small {
 .photoProfile {
   width: 64px;
   height: 64px;
+  background-size: cover;
+  border-radius: 30px;
 }
 .chatCard {
   margin: 0 auto;
@@ -442,11 +446,15 @@ small {
 .photoHeader {
   width: 64px;
   height: 64px;
+  background-size: cover;
+  border-radius: 30px;
 }
 
 .photoChat {
   width: 54px;
   height: 54px;
+  background-size: cover;
+  border-radius: 30px;
 }
 
 .bubble {

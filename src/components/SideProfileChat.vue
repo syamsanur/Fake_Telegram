@@ -107,6 +107,8 @@ export default {
   .photoProfile {
     width: 82px;
     height: 82px;
+    background-size: cover;
+    border-radius: 30px;
   }
 
   .smallText {
