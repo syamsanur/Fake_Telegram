@@ -29,10 +29,10 @@
           </b-form-textarea>
         </b-form-group>
 
-        <b-form-group label-cols="4" label="Edit Photo">
+        <!-- <b-form-group label-cols="4" label="Edit Photo">
           <p>{{edit.image}}</p>
           <input class="upload" type="file" @change="processFile($event)"/>
-        </b-form-group>
+        </b-form-group> -->
 
         <div class="col float-right">
           <div class="row">
@@ -61,10 +61,10 @@ export default {
     }
   },
   methods: {
-    processFile (event) {
-      this.image = event.target.files[0]
-      // this.sendData()
-    },
+    // processFile (event) {
+    //   this.image = event.target.files[0]
+    //   // this.sendData()
+    // },
     sendData () {
       this.edit.newImage = this.image
       // console.log(this.bio_users)
@@ -74,7 +74,7 @@ export default {
           window.location.reload()
         })
         .catch((err) => {
-          alert(err)
+          console.log(err)
         })
     },
     ...mapActions({

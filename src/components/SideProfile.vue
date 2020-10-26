@@ -23,6 +23,20 @@
             <img class="photoProfile" :src="`${url}/${dataUser.image}`">
           </div>
 
+          <div class="col text-center mb-3 mt-3">
+            <b-btn variant="outline-primary" size="sm" v-b-toggle.edit-img-collapse>
+              <b-icon icon="pencil-fill"></b-icon> Edit Profile Picture
+            </b-btn>
+          </div>
+
+          <b-collapse id="edit-img-collapse" class="mt-3 mb-3 border">
+            <div class="col">
+              <b-form enctype="multipart/form-data">
+                  <input type="file" @change.prevent="processFile($event)">
+                </b-form>
+            </div>
+          </b-collapse>
+
           <div class="col text-center">
             <h6>{{dataUser.fullname_users}}</h6>
             <small class="smallText">@{{dataUser.fullname_users}}</small>
@@ -119,7 +133,7 @@
 <script>
 import ModalEdit from './ModalEdit'
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 const { url } = require('../helper/env')
 
@@ -129,14 +143,42 @@ export default {
   },
   data () {
     return {
+      id: localStorage.getItem('id'),
       url: url,
-      disable: true
+      disable: true,
+      image: ''
     }
   },
   methods: {
     hideSideMenu () {
       this.$root.$emit('bv::toggle::collapse', 'sideprofile')
-    }
+    },
+    processFile (event) {
+      this.image = event.target.files[0]
+      const data = {
+        id: localStorage.getItem('id'),
+        image: this.image
+      }
+      this.updateImg(data)
+        .then((response) => {
+          if (response.data.message === 'Wrong image type') {
+            alert('Wrong Image type')
+          } else if (response.data.message === 'Image size is to big') {
+            alert('Image size is to big')
+          } else {
+            alert(response.data.message)
+            // console.log(this.id)
+            this.onGetOneUser(this.id)
+          }
+        })
+        .catch((err) => {
+          alert(err)
+        })
+    },
+    ...mapActions({
+      updateImg: 'sUsers/updateImage',
+      onGetOneUser: 'sUsers/getOneUser'
+    })
   },
   computed: {
     ...mapGetters({
